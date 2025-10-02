@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Object Spawner UI</title>
+		<link rel="stylesheet" href="style.css">
+		<script type="text/javascript" src="nui://game/ui/jquery.js"></script>
+		<script src="ui.js"></script>
+		<script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+		
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="bootstrap.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js" integrity="sha512-OvBgP9A2JBgiRad/mM36mkzXSXaJE9BEIENnVEmeZdITvwT09xnxLtT4twkCa8m/loMbPHsvPl0T8lRGVBwjlQ==" crossorigin="anonymous"></script>
+	</head>
+
+    <body id="body">
+		<!-- Main Modal -->
+		<div id="main-object-modal" class="modal" tabindex="-1">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Object Spawner</h5>
+					</div>
+					<div class="modal-body">
+						<div class="d-grid gap-2">
+							<button class="btn btn-primary" onclick="$('#main-object-modal').modal('hide'); $('#create-object-modal').modal('show')" type="button">CREATE</button>
+							<button class="btn btn-primary" onclick="ManageObjects()" type="button">MANAGE</button>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="CloseUI()">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="create-objects">
+
+		</div>
+
+		<div id="placed-objects">
+			<div class="object"></div>
+		</div>
+
+		<!-- Create Object Modal -->
+		<div id="create-object-modal" class="modal" tabindex="-1">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Create Object</h5>
+					</div>
+					<div class="modal-body">
+						<div class="input-group mb-3">
+							<input id="create-object-label" type="text" style="color: white;" class="form-control" placeholder="Label">
+						</div>
+						<div class="input-group mb-3">
+							<input id="create-object-model" type="text" style="color: white;" class="form-control" placeholder="Object Model">
+						</div>
+						<div class="input-group mb-3">
+							<input id="create-object-distance" value="100" type="number" min="1" max="500" style="color: white;" class="form-control" placeholder="Render Distance">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" onclick="$('#create-object-modal').modal('hide'); $('#main-object-modal').modal('show');">Back</button>
+						<button onclick="CreateObject()" type="button" class="btn btn-primary">Create</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Manage Objects Modal -->
+		<div id="manage-object-modal" class="modal" tabindex="-1">
+			<div class="modal-dialog modal-dialog-centered modal-xl">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Manage Objects</h5>
+					</div>
+					<div class="modal-body">
+
+						<table class="table table-striped table-hover">
+							<thead>
+								<tr>
+									<th>Label</th>
+									<th>Model</th>
+									<th>Coords</th>
+									<th>UUID</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+
+							<tbody id="manage-objs-list">
+								<tr>
+									<td>TEST</td>
+									<td>model_name</td>
+									<td>vector3(0, 0, 0)</td>
+									<td>xxx-xxxxx-xxxxxxxx</td>
+									<td><button type="button" class="btn btn-danger" onclick="DeleteObject()"><i class="fas fa-trash-alt"></i></button></td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" onclick="$('#manage-object-modal').modal('hide'); $('#main-object-modal').modal('show');">Back</button>
+						<button onclick="CreateObject()" type="button" class="btn btn-primary">Create</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+	
+</html>
